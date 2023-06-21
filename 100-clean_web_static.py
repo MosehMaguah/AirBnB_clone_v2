@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """
-do_pack(): Generates a .tgz archive from the
-contents of the web_static folder
-do_deploy(): Distributes an archive to a web server
-deploy (): Creates and distributes an archive to a web server
-do_clean(): Deletes out-of-date archives
+  do_pack(): Generates a .tgz archive from the
+  contents of the web_static folder
+  do_deploy(): Distributes an archive to a web server
+  deploy (): Creates and distributes an archive to
+  a web server
+  do_clean(): Deletes out-of-date archives
 """
 
 from fabric.operations import local, run, put, sudo
@@ -18,7 +19,7 @@ env.hosts = ['35.190.176.186', '35.196.156.157']
 
 
 def do_pack():
-    """Function to compress files in an archive"""
+    """ This function to compress files in an archive"""
     local("mkdir -p versions")
     filename = "versions/web_static_{}.tgz".format(datetime.strftime(
                                                    datetime.now(),
@@ -31,7 +32,9 @@ def do_pack():
 
 
 def do_deploy(archive_path):
-    """Function to distribute an archive to a server"""
+    """ This function to distribute an
+        archive to a server
+    """
     if not os.path.exists(archive_path):
         return False
     rex = r'^versions/(\S+).tgz'
@@ -71,7 +74,9 @@ def do_deploy(archive_path):
 
 
 def deploy():
-    """Creates and distributes an archive to a web server"""
+    """ This reates and distributes an archive to a
+        web server
+    """
     filepath = do_pack()
     if filepath is None:
         return False
@@ -80,7 +85,7 @@ def deploy():
 
 
 def do_clean(number=0):
-    """Deletes out-of-date archives"""
+    """ This deletes out-of-date archives"""
     files = local("ls -1t versions", capture=True)
     file_names = files.split("\n")
     n = int(number)
