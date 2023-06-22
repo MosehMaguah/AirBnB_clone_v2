@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-  this script starts a Flask web application
+  Script starts a Flask web application
 """
 
 from flask import Flask, render_template
@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route('/hbnb_filters', strict_slashes=False)
 def filters():
-    """ displays a HTML page like 6-index.html from static     """
+    """ This displays a HTML page like 6-index.html from static     """
     states = storage.all("State").values()
     amenities = storage.all("Amenity").values()
     return render_template('10-hbnb_filters.html', states=states,
@@ -20,7 +20,7 @@ def filters():
 
 @app.teardown_appcontext
 def teardown_db(exception):
-    """ this closes the storage on teardown """
+    """ closes the storage on teardown """
     storage.close()
 
 if __name__ == '__main__':
