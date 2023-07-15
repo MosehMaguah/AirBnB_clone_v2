@@ -1,9 +1,12 @@
 #!/usr/bin/python3
-""" The Function that deploys """
+"""
+Fabric script (based on the file 3-deploy_web_static.py) that
+deletes out-of-date archives, using the function do_clean
+"""
 from fabric.api import *
 
 
-env.hosts = ['35.231.33.237', '34.74.155.163']
+env.hosts = ['52.201.190.14', '54.160.65.122']
 env.user = "ubuntu"
 
 
